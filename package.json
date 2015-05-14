@@ -11,7 +11,7 @@
     "async": "*",
     "body-parser": "*", 
     "coffee-script": "*",
-    
+    "dotenv": "*",
     "grunt": "*",
     "grunt-contrib-coffee": "*",
     "grunt-contrib-sass": "*",

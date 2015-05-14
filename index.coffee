@@ -3,10 +3,11 @@ path = require 'path'
 bodyParser = require 'body-parser'
 morgan = require 'morgan'
 mongoose = require 'mongoose'
+require('dotenv').load();
 
 app = express()
 port = process.env.PORT || 5000
-mongoose.connect 'mongodb://heroku_app29301030:9fu04jeqbj5rvn319ctk6pp452@ds035240.mongolab.com:35240/heroku_app29301030'
+mongoose.connect process.env.MONGO_URI
 
 
 app.use express.static path.join __dirname, 'build'
