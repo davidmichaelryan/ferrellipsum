@@ -10,21 +10,20 @@ module.exports = (app) ->
     return
 
   app.get "/", (req, res) ->
-    index_partials = base_partials
-    res.render "index",
-      partials: index_partials
 
-
-  app.get "/ipsum", (req, res) ->  
-    
     num_paragraphs = req.query.paras;
-
-    makeIpsum num_paragraphs, (results)->
-      
-      ipsum_partials = base_partials 
-      res.locals =
-        data: results.paragraphs
-      res.render "index",
-        partials: ipsum_partials
-      
+    if num_paragraphs != undefined
+      makeIpsum num_paragraphs, (results)->
         
+        ipsum_partials = base_partials
+        res.locals =
+          data: results.paragraphs
+        res.render "index",
+          partials: ipsum_partials
+    
+    else
+      index_partials = base_partials
+      res.render "index",
+        partials: index_partials
+      
+    
