@@ -27,6 +27,8 @@ fixPeriods = (sentence)->
     sentence = sentence.substring(0, sentence.length-1)
   if sentence[sentence.length - 1] != '?' && sentence[sentence.length - 1] != '!'
     sentence += '. '
+  else
+    sentence += ' '
   sentence
 
 getIpsumPhrase = (ipsum)->
