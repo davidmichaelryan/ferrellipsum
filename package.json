@@ -1,0 +1,30 @@
+{
+  "name": "ferrellipsum",
+  "version": "1.0.0",
+  "description": "Will Ferrell & Lorem Ipsum",
+  "main": "index.coffee",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davidmichaelryan/ferrellipsum.git"
+  },
+  "dependencies": {
+    "async": "*",
+    "body-parser": "*", 
+    "coffee-script": "*",
+    
+    "grunt": "*",
+    "grunt-contrib-coffee": "*",
+    "grunt-contrib-sass": "*",
+    "grunt-contrib-watch": "*",
+  
+    "hogan-express": "*",
+    "express": "*",
+    "mongoose": "*",
+    "morgan": "*",
+    "node-sass": "*",
+    "node-sass-middleware": "*"  
+  },
+  "author": "David Ryan",
+  "license": "ISC",
+  "homepage": "https://github.com/davidmichaelryan/ferrellipsum"
+}

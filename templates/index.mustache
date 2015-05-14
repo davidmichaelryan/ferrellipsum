@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {{> head }}
+  </head>
+  <body>
+    <div class="background">
+      <h1>Ferrell Ipsum</h1>
+      <p>Your Lorem Ipsum dosage, with a splash of Will Ferrell</p>
+    </div>
+    <div class="container">
+      <form action="ipsum" method="get">
+        <h2>How many paragraphs do you want</h2>
+        <input type="number" name="paras" value="1" min="1" max="5"/>
+        <button type="submit" value="submit">Submit<br/>
+      </form>      
+    </div>
+    {{# data }}
+      <p>
+        {{ text }}
+      </p>
+    {{/ data }}
+  </body>
+</html>
