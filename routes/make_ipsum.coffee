@@ -25,6 +25,8 @@ fixPeriods = (sentence)->
     sentence = sentence.substring(0, sentence.length-1)
   if sentence[sentence.length - 1] == ','
     sentence = sentence.substring(0, sentence.length-1)
+  if sentence[sentence.length - 1] != '?' && sentence[sentence.length - 1] != '!'
+    sentence += '. '
   sentence
 
 getIpsumPhrase = (ipsum)->
@@ -42,7 +44,6 @@ getIpsumPhrase = (ipsum)->
 getQuotePhrase = (q_count, quotes)->
   if q_count == quotes.length 
     q_count = 0
-    # console.log "resetting quotes..."
     for q in quotes 
       q.used = undefined
 
@@ -50,7 +51,6 @@ getQuotePhrase = (q_count, quotes)->
     q_count += 1
     if q_count == quotes.length 
       q_count = 0
-      # console.log "resetting quotes..."
       for q in quotes 
         q.used = undefined
 
@@ -67,9 +67,6 @@ getQuotePhrase = (q_count, quotes)->
         matches.push word
     i+=1
 
-  # console.log '\n'
-  # console.log quote.text
-  # console.log matches
 
   q = 0
   
@@ -84,9 +81,6 @@ getQuotePhrase = (q_count, quotes)->
           quotes[q_count].used = 'true'
           quotes[q].used = 'true'
 
-          # console.log test_word
-          # console.log quotes[q_count].text.split(test_word)
-          # console.log quotes[q].text.split(test_word)
 
           if Math.random() > 0.5
             first_half = quotes[q].text.split(test_word)[0]
@@ -96,7 +90,6 @@ getQuotePhrase = (q_count, quotes)->
             second_half = quotes[q].text.split(test_word)[1]
           
           quote_phrase = first_half + test_word + second_half
-          # console.log "QUOTE_PHRASE: " + quote_phrase
           break
     q++      
   q_count += 1
@@ -133,14 +126,13 @@ makeParagraphs = (callback, quotes, ipsums, num_paragraphs)->
 
       #make the response  
       if quote_phrase && ipsum_phrase
+        quote_phrase = fixPeriods quote_phrase
+        ipsum_phrase = fixPeriods ipsum_phrase
         if Math.random() > 0.5
-          ipsum_phrase = fixPeriods ipsum_phrase
-          response += quote_phrase + '. ' + ipsum_phrase + '. '
+          response += quote_phrase + ipsum_phrase
         else
-          quote_phrase = fixPeriods quote_phrase
-          response += ipsum_phrase + '. ' + quote_phrase + '. '
+          response += ipsum_phrase + quote_phrase
 
-      # console.log "RESPONSE: " + response + "\n"
     
     #add to the paragraph
     if response.length > 0
@@ -195,7 +187,7 @@ module.exports = (paragraphs, callback) ->
 
   async.auto actions, (err, results)->
     if err?
-      # console.log err
+      console.log err
       return err
     else
       callback results
