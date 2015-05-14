@@ -3,7 +3,7 @@ Ipsum = require '../models/ipsum'
 async = require 'async'
 
 wordList = ['are', 'a', 'go', 'to', 'on', 'in', 'of', 'not', 'a', 'by', 'the', 'it', 'has', 'and', 'like', 'I', 'was', 'if', 'is', 'an', 'or', 'are', 'be','have', 'into', 'this', '. ']
-avg_paragraph_length = 400
+avg_paragraph_length = 600
 
 shuffle = (callback, array)->
   currentIndex = array.length
