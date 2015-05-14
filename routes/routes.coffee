@@ -1,3 +1,4 @@
+Quote = require '../models/quote'
 makeIpsum = require './make_ipsum'
 
 base_partials =
@@ -25,5 +26,22 @@ module.exports = (app) ->
       index_partials = base_partials
       res.render "index",
         partials: index_partials
+
+
+
+
+  app.get "/submit", (req, res) ->
+    index_partials = base_partials
+    res.render "submit",
+      partials: index_partials
       
-    
+  app.post '/submit', (req, res) ->
+    quote = new Quote()
+    quote.text = req.body.quote
+    quote.movie = req.body.movie
+
+    quote.save (err) ->
+      if err
+        res.send err
+      res.json
+        message: "quote created!"
